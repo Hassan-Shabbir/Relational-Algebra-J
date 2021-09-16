@@ -116,3 +116,127 @@ x writerel y unionrel~ readrel x   NB. x unionrel y has cols of x
 readrel 's'
 's' appendrel t
 delrel 's'
+
+
+
+
+
+
+
+
+
+
+
+
+NB. ===============================================================
+NB. the code below should be ignored
+Note 'Extra commented code'
+]s1 =: torel '1,sname,city; s1,magna,ajax; s2,budd,hull'
+datatype each s1
+hascolname s1
+'sname' {{ y {~"(1) I. +/ (',' cutopen x) =/ {."(2) y }} s
+'' {{ y {~"(1) I. +/ (',' cutopen x) =/ {."(2) y }} s
+s writerel d,'s'
+replace =: {{((2 > i. # w) # w) , (<'foo'), (2 < i. # w) # w}}
+replace =: {{((u > i. # y) # y) , (<x) , (u < i. # y) # y}}
+    x     u              y
+value index `replace` data
+'foo'     2  replace     w
+'foo' 2 replace w
+replace =: {{ (({. y) #~ m > i. # {. y) , (<x) , ({. y) #~ m < i. # {. y }}
+>}. ',' cutopen 'sname,SNAME'
+  NB. idx1 =: {{ I. ({. ',' cutopen x) =/  {."(2) y }}
+  NB. (}. y) ,~ (({. y) #~ idx > i. # {. y) , newstr , ({. y) #~ idx < i. # {. y
+'sno,SNOW' rename 'PNO,pNo' rename 'pno,PNO' rename 'price,PRICE' rename sp
+]x =: (< ;: 'a b c d'), (< ;: 'a b c d') , (< ;: 'a b c d'), < ;: 'a b c d'
+{. ,"(2) _2 >\ 2 2 $ x
+
+,. ~. <"(0) 1 2 1 3 */ 1 2 3 2
+
+_2 <\ 1 2 3 4
+]a =: ,.<"(1)}.s
+]d =: ,.<"(1)}.p
+res
+,"(2) _2 >\ 2 2 $ res NB. rows need to be calculated
+
+filter =: {{ u # ] }}
+]e =: a:&~: filter"(1) {. ,"(2) _2 >\ 2 2 $ res NB. rows need to be calculated
+2 2 $ res NB. rows need to be calculated
+
+]a =: {. 0 2 1 {"(1) s
+]b =: {. s
+]a =: /:~ a
+]b =: /:~ b
+a -: b
+
+(ord { {. s), /:~ ord {"(1) }. s 
+
+cross =: {{ 
+res =: ;: ''
+a =: ,.<"(1)}.x
+b =: ,.<"(1)}.y
+NB. for_i. a do. for_j. b do.   res =: res,i,j   end. end.
+NB. shape =: 2 ,~ (1 -~ {. $ x) * 1 -~ {. $ y
+NB. res =: a:&~: filter"(1) {. ,"(2) _2 >\ shape $ res
+NB. res =: res ,~ ({.x) , {. y
+}}
+
+]c =: ,"(2) a ,"(0) (#a) # 0 { b
+]d =: ,"(2) a ,"(0) (#a) # 1 { b
+
+{. s
+{. sp
+1 0 {"(1) p
+}. s
+/:~"(1) }. s
+/:~ /:~"(1) 0 1 { 1 0 {"(1) }. s
+ord {"(1) s
+
+eqrel =: {{
+]ordx =: /: {. x
+]primeordx =: /: {. x
+]ordy =: /: {. y
+]primeordy =: /: {. y
+((ordx { {. x), /:~ ordx {"(1) }. x) *./@:,@:-: (ordy { {. y), /:~ ordy {"(1) }. y
+}}
+
+NB. x =: t [ y =: u
+NB. sortorder =: , I. ({.t) =/ {.u
+t
+u
+t eqcolnames u
+
+a
+b
+}. a
+}. 2 1 0 {"(1) b
+b, (}.a) {~ I. -. (}. a) e. }. b
+
+
+NB. doesn"t rename if names collide
+cross =: {{
+]res =: ;: ''
+]a =: ,.<"(1)}.x
+]b =: ,.<"(1)}.y 
+for_i. b do.   
+	res =: res,  a ,"(1) i_index { b   
+end.
+]res =: ~. (a:&~: filter"(1) ,"(2) > }. res) ,~ ({.x) , {.y
+}}
+'o' writerel s cross p
+{.p cross s
+{.s
+{.p
+
+,(<"(1)}.p) ,"(0)/ <"(1)}.s
+
+'s2'&= > }. 'sno' project s
+, > I. each  *./ each 's2'&= each}. 'sno' project s
+, > 0 =each I. each *./ each 's2'&= each}. 'sno' project s
+s {~ 0 , 1 + I. , > *./ each 's2'&= each}. 'sno' project s
+select =: {{ ,. {. y {~ 0,. 1 + I. |: u > }. x project y }}
+
+2 e. each 1 2 3; 4 5
+2 e. &.> 1 2 3; 4 5
+2 e.&.> 1 2 3; 4 5
+)
