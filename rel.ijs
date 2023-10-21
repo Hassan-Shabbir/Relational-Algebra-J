@@ -6,7 +6,7 @@ p =: torel 'pno,pname; p1,bolt; p2,nut'
 'pno' =&'p1' select 'price' >&0.3 select sp
 'city,CiTy;sname,SNAME' rename s
 s cross p
-)alsa
+)
 
 
 load 'tables/csv'
